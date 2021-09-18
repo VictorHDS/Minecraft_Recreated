@@ -11,9 +11,13 @@ class Voxel(Button):
             color = color.white,
             highlight_color = color.lime
         )
+    def input(self, key):
+        if self.hovered:
+            if key == 'left mouse down':
+                voxel = Voxel(position = self.position + mouse.normal)
 app = Ursina()
-for z in range(8):
-    for x in range(8):
+for z in range(16):
+    for x in range(16):
         voxel = Voxel(position = (x,0,z))
 player = FirstPersonController()
 app.run()
