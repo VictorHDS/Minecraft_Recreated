@@ -13,8 +13,10 @@ class Voxel(Button):
         )
     def input(self, key):
         if self.hovered:
-            if key == 'left mouse down':
+            if key == 'right mouse down':
                 voxel = Voxel(position = self.position + mouse.normal)
+            if key == 'left mouse down':
+                destroy(self)
 app = Ursina()
 for z in range(16):
     for x in range(16):
