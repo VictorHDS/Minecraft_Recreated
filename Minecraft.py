@@ -6,6 +6,7 @@ dirt_texture = load_texture('assets/images/dirt_block.png')
 stone_texture = load_texture('assets/images/stone_block.png')
 brick_texture = load_texture('assets/images/brick_block.png')
 sky_texture = load_texture('assets/images/skybox.png')
+arm_texture = load_texture('assets/images/arm_texture.png')
 block_pick = 1
 def update():
     global block_pick
@@ -47,9 +48,20 @@ class Sky(Entity):
             scale = 150,
             double_sided = True
         )
+class Hand(Entity):
+    def __init__(self):
+        super().__init__(
+            parent = camera.ui,
+            model = 'assets/arm',
+            texture = arm_texture,
+            scale = 0.2,
+            rotation = Vec3(150,-10,0),
+            position = Vec2(0.4,-0.6)
+        )
 for z in range(24):
     for x in range(24):
         voxel = Voxel(position = (x,0,z))
 player = FirstPersonController()
 sky = Sky()
+hand = Hand()
 app.run()
