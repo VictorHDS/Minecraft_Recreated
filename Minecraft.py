@@ -10,6 +10,8 @@ arm_texture = load_texture('assets/images/arm_texture.png')
 block_pick = 1
 def update():
     global block_pick
+    if held_keys['right mouse'] or held_keys['left mouse']:hand.active()
+    else:hand.passive()
     if held_keys['1']: block_pick = 1
     if held_keys['2']: block_pick = 2
     if held_keys['3']: block_pick = 3
@@ -58,6 +60,10 @@ class Hand(Entity):
             rotation = Vec3(150,-10,0),
             position = Vec2(0.4,-0.6)
         )
+    def active(self):
+        self.position = Vec2(0.3,-0.5)
+    def passive(self):
+        self.position = Vec2(0.4,-0.6)
 for z in range(24):
     for x in range(24):
         voxel = Voxel(position = (x,0,z))
