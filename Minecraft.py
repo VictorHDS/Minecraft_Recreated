@@ -7,7 +7,10 @@ stone_texture = load_texture('assets/images/stone_block.png')
 brick_texture = load_texture('assets/images/brick_block.png')
 sky_texture = load_texture('assets/images/skybox.png')
 arm_texture = load_texture('assets/images/arm_texture.png')
+punch_sound = Audio('assets/sounds/punch_sound',loop=False,autoplay=False)
 block_pick = 1
+window.fps_counter.enabled=False
+window.exit_button.visible=False
 def update():
     global block_pick
     if held_keys['right mouse'] or held_keys['left mouse']:hand.active()
@@ -31,6 +34,7 @@ class Voxel(Button):
     def input(self, key):
         if self.hovered:
             if key == 'right mouse down':
+                punch_sound.play()
                 if block_pick == 1:
                     voxel = Voxel(position = self.position + mouse.normal, texture = grass_texture)
                 if block_pick == 2:
@@ -40,6 +44,7 @@ class Voxel(Button):
                 if block_pick == 4:
                     voxel = Voxel(position = self.position + mouse.normal, texture = brick_texture)
             if key == 'left mouse down':
+                punch_sound.play()
                 destroy(self)
 class Sky(Entity):
     def __init__(self):
