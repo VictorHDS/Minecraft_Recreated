@@ -5,6 +5,7 @@ grass_texture = load_texture('assets/images/grass_block.png')
 dirt_texture = load_texture('assets/images/dirt_block.png')
 stone_texture = load_texture('assets/images/stone_block.png')
 brick_texture = load_texture('assets/images/brick_block.png')
+sky_texture = load_texture('assets/images/skybox.png')
 block_pick = 1
 def update():
     global block_pick
@@ -37,9 +38,18 @@ class Voxel(Button):
                     voxel = Voxel(position = self.position + mouse.normal, texture = brick_texture)
             if key == 'left mouse down':
                 destroy(self)
-
-for z in range(16):
-    for x in range(16):
+class Sky(Entity):
+    def __init__(self):
+        super().__init__(
+            parent = scene,
+            model = 'sphere',
+            texture = sky_texture,
+            scale = 150,
+            double_sided = True
+        )
+for z in range(24):
+    for x in range(24):
         voxel = Voxel(position = (x,0,z))
 player = FirstPersonController()
+sky = Sky()
 app.run()
